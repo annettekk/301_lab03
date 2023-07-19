@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+
 import './App.css';
+import data from "./data.json"
+
+import Main from "./components/Main";
+import SelectedBeast from "./components/SelectedBeast";
+import { useState } from 'react';
+
+
 
 function App() {
+
+  const [modal, setModal] = useState(false);
+  const [modalContent, setModalContent] = useState({});
+
+  function handleModal(beast) {
+    setModal(!modal);
+    setModalContent(beast);
+  }
+
+  function closeModal() {
+    setModal(!modal);
+    setModalContent({});
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Main data={data} handleModal={handleModal} />
+      {modal &&<SelectedBeast modalContent={modalContent} closeModal={closeModal}/>}
     </div>
   );
 }
