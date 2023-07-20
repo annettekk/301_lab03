@@ -5,10 +5,10 @@ import HornedBeast from "./HornedBeast";
 // import data from "../data.json"
 
 
-export default function Main({data, handleModal}) {
+export default function Main({beastData, handleModal}) {
   return (
     <main>
-{data.map((beast)=>{
+{beastData.map((beast)=>{
   return (<HornedBeast key={beast._id}
     title={beast.title}
     imgUrl={beast.image_url}
